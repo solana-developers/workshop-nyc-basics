@@ -91,7 +91,7 @@ import {
   // console.log("tx before signing:", tx);
 
   // sign the transaction with our needed Signers (e.g. `payer` and `keypair`)
-  tx.sign([payer, keypair]);
+  tx.sign([payer]);
 
   console.log("tx after signing:", tx);
 
