@@ -57,7 +57,11 @@ import { Metaplex, bundlrStorage, keypairIdentity } from "@metaplex-foundation/j
     // set our keypair to use, and pay for the transaction
     .use(keypairIdentity(payer))
     // define a storage mechanism to upload with
-    .use(bundlrStorage());
+    .use(bundlrStorage({
+      address: "https://devnet.bundlr.network",
+      providerUrl: "https://api.devnet.solana.com",
+      timeout: 60000
+    }));
 
   // upload the JSON metadata
   const { uri } = await metaplex.nfts().uploadMetadata(metadata);
@@ -68,7 +72,7 @@ import { Metaplex, bundlrStorage, keypairIdentity } from "@metaplex-foundation/j
   const { nft, response } = await metaplex.nfts().create({
     uri,
     name: metadata.name,
-    symbol: metadata.name,
+    symbol: metadata.symbol,
 
     // `sellerFeeBasisPoints` is the royalty that you can define on nft
     sellerFeeBasisPoints: 500, // Represents 5.00%.
